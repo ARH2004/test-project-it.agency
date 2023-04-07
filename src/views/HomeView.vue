@@ -3,7 +3,7 @@
 		<div class="wrapper">
 			<div>
     		<vHeader/>
-				<vSlider/>
+				<vPageColors/>
 			</div>
 			<vFooter/>
 		</div>
@@ -11,16 +11,14 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import vHeader from '@/components/vHeader.vue'
-import vSlider from '@/components/vSlider.vue'
+import vHeader from '@/components/vHeader.vue';
 import vFooter from '@/components/vFooter.vue';
-
+import vPageColors from '@/components/vPageColors.vue';
 export default {
   name: 'HomeView',
   components: {
     vHeader,
-		vSlider,
+		vPageColors,
 		vFooter,
   }
 }
