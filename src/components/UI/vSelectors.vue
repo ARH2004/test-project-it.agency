@@ -21,6 +21,7 @@ export default {
     initialState: {
       type: Boolean,
       default: false,
+			required: true,
     },
 		text: {
 			type: String,

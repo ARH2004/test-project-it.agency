@@ -5,7 +5,8 @@
     		<vHeader/>
 				<vPageColors/>
 			</div>
-			<vFooter/>
+				<vFooter/>
+
 		</div>
   </div>
 </template>
@@ -25,7 +26,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .wrapper{
-	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
