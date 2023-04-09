@@ -16,6 +16,9 @@
 					<h2 class="pageColors__title">412 товаров</h2>
         	<vProductCard />
 				</div>
+				<div class="filterSilect">
+					<filterSelector :items="items" @select="handleSelect" />
+				</div>
       </div>
     </div>
   </div>
@@ -24,6 +27,7 @@
 import vSlider from "@/components/UI/vSlider.vue";
 import vSelectors from "@/components/UI/vSelectors.vue";
 import vProductCard from "@/components/UI/vCardsProduct.vue";
+import filterSelector from "@/components/UI/vFilterSelector.vue";
 
 export default {
   name: "vPageColor",
@@ -31,6 +35,7 @@ export default {
     vSlider,
     vSelectors,
     vProductCard,
+		filterSelector,
   },
   data() {
     return {
@@ -40,6 +45,12 @@ export default {
         { id: Date.now(), stateSel: false, text: "Контрактные" },
         { id: Date.now(), stateSel: false, text: "Эксклюзивные" },
         { id: Date.now(), stateSel: false, text: "Распродажа" },
+      ],
+			items: [
+        { id: Date.now(), label: 'Сначала дорогие' },
+        { id: Date.now(), label: 'Сначала недорогие' },
+        { id: Date.now(), label: 'Сначала популярные' },
+        { id: Date.now(), label: 'Сначала новые' },
       ],
     };
   },
