@@ -16,7 +16,7 @@
 					<h2 class="pageColors__title">412 товаров</h2>
         	<vProductCard />
 				</div>
-				<div class="filterSilect">
+				<div class="pageColors__filterSilect">
 					<filterSelector :items="items" @select="handleSelect" />
 				</div>
       </div>
@@ -66,7 +66,13 @@ export default {
     padding: 0px 65px 0px 65px;
     margin: 75px 0px 150px 0px;
     display: flex;
+		position: relative;
   }
+	&__filterSilect{
+		position: absolute;
+		top: 0;
+		left: 90%;
+	}
 	&__title{
 		margin-bottom: 45px;
 		font-weight: 500;

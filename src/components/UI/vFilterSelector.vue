@@ -38,8 +38,6 @@ export default {
 .dropdown{
   position: relative;
   z-index: 20;
-	margin-right: 0px;
-	width: 170px;
 }
 .black{
   position: fixed;
