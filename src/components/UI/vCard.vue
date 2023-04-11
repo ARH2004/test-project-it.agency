@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @mouseover="isHovered = true" @mouseleave="isHovered = false">
     <div class="card__wrapper">
       <img :src="require('@/assets/images/' + image)" alt="card" class="card__img" />
       <h3 class="card__title">{{ title }}</h3>
@@ -8,7 +8,7 @@
 					<p class="card__price-number">{{ price }}</p>
 					<p class="card__price-rub">₽</p>
 				</div>
-        <button class="card__btn">
+        <button class="card__btn" v-if="isHovered">
           <img
             src="@/assets/images/icons/plus.svg"
             alt="plus"
@@ -37,12 +37,18 @@ export default {
       required: true,
 		}
 	},
+	data() {
+		return {
+			isHovered: false,
+		}
+	}
 };
 </script>
 <style lang="scss" scoped>
 .card {
   margin: 0px 25px 30px 0px;
   &__info-block {
+		height: 30px;
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
