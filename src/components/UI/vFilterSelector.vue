@@ -40,11 +40,15 @@ export default {
   z-index: 20;
 }
 .dropdown-button {
+	cursor: pointer;
 	font-weight: 500;
 	font-size: 12px;
 	line-height: 15px;
 	letter-spacing: 0.06em;
 	text-transform: uppercase;
 	color: #1F2020;
+}
+.dropdown-item {
+	cursor: pointer;
 }
 </style>
