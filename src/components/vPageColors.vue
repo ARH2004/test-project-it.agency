@@ -13,11 +13,11 @@
           </div>
         </div>
 				<div class="pageColors__cards">
-					<h2 class="pageColors__title">412 товаров</h2>
-        	<vProductCard />
+					<h2 class="pageColors__title">{{ arrayLength  }} товаров</h2>
+        	<vProductCard @array-length="handleArrayLength" />
 				</div>
 				<div class="pageColors__filterSilect">
-					<filterSelector :items="items" @select="handleSelect" />
+					<filterSelector :items="itemSel" @select="handleSelect" />
 				</div>
       </div>
     </div>
@@ -46,14 +46,20 @@ export default {
         { id: Date.now(), stateSel: false, text: "Эксклюзивные" },
         { id: Date.now(), stateSel: false, text: "Распродажа" },
       ],
-			items: [
+			itemSel: [
         { id: Date.now(), label: 'Сначала дорогие' },
         { id: Date.now(), label: 'Сначала недорогие' },
         { id: Date.now(), label: 'Сначала популярные' },
         { id: Date.now(), label: 'Сначала новые' },
       ],
+			arrayLength: 0
     };
   },
+	methods: {
+    handleArrayLength(length) {
+      this.arrayLength = length
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

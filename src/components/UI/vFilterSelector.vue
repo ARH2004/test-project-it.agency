@@ -39,13 +39,12 @@ export default {
   position: relative;
   z-index: 20;
 }
-.black{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 10;
+.dropdown-button {
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 15px;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: #1F2020;
 }
 </style>
