@@ -4,21 +4,17 @@
     <div class="container-mini">
       <div class="pageColors__wrapper">
         <div class="pageColors__sel">
-          <div
-            class="pageColors__sel-items"
-            v-for="item in arrSel"
-            :key="item.id"
-          >
-            <vSelectors :initialState="item.stateSel" :text="item.text" />
+          <div class="pageColors__sel-items">
+            <vSelectors />
           </div>
         </div>
-				<div class="pageColors__cards">
-					<h2 class="pageColors__title">{{ arrayLength  }} товаров</h2>
-        	<vProductCard @array-length="handleArrayLength" />
-				</div>
-				<div class="pageColors__filterSilect">
-					<filterSelector :items="itemSel" @select="handleSelect" />
-				</div>
+        <div class="pageColors__cards">
+          <h2 class="pageColors__title">{{ arrayLength }} товаров</h2>
+          <vProductCard @array-length="handleArrayLength" />
+        </div>
+        <div class="pageColors__filterSilect">
+          <filterSelector :items="itemSel" @select="handleSelect" :isOpen="isOpen"/>
+        </div>
       </div>
     </div>
   </div>
@@ -35,31 +31,24 @@ export default {
     vSlider,
     vSelectors,
     vProductCard,
-		filterSelector,
+    filterSelector,
   },
   data() {
     return {
-      arrSel: [
-        { id: Date.now(), stateSel: false, text: "Новинки" },
-        { id: Date.now(), stateSel: false, text: "Есть в наличии" },
-        { id: Date.now(), stateSel: false, text: "Контрактные" },
-        { id: Date.now(), stateSel: false, text: "Эксклюзивные" },
-        { id: Date.now(), stateSel: false, text: "Распродажа" },
+      itemSel: [
+        { id: Date.now(), label: "Сначала дорогие" },
+        { id: Date.now(), label: "Сначала недорогие" },
+        { id: Date.now(), label: "Сначала популярные" },
+        { id: Date.now(), label: "Сначала новые" },
       ],
-			itemSel: [
-        { id: Date.now(), label: 'Сначала дорогие' },
-        { id: Date.now(), label: 'Сначала недорогие' },
-        { id: Date.now(), label: 'Сначала популярные' },
-        { id: Date.now(), label: 'Сначала новые' },
-      ],
-			arrayLength: 0
+      arrayLength: 0,
     };
   },
-	methods: {
+  methods: {
     handleArrayLength(length) {
-      this.arrayLength = length
-    }
-  }
+      this.arrayLength = length;
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -72,31 +61,29 @@ export default {
     padding: 0px 65px 0px 65px;
     margin: 75px 0px 150px 0px;
     display: flex;
-		position: relative;
+    position: relative;
   }
-	&__filterSilect{
-		position: absolute;
-		top: 0;
-		left: 90%;
-	}
-	&__title{
-		margin-bottom: 45px;
-		font-weight: 500;
-		font-size: 12px;
-		line-height: 15px;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		color: #1F2020;
-	}
-	&__cards {
-		margin-left: 140px;
-	}
+  &__filterSilect {
+    position: absolute;
+    top: 0;
+    left: 90%;
+  }
+  &__title {
+    margin-bottom: 45px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #1f2020;
+  }
+  &__cards {
+    margin-left: 140px;
+  }
   &__sel {
     display: flex;
     flex-direction: column;
   }
-  &__sel-items {
-    margin-bottom: 10px;
-  }
 }
+
 </style>

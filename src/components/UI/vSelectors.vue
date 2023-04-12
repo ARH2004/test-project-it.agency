@@ -1,15 +1,15 @@
 <template>
   <div class="selectors">
     <div class="container">
-      <div class="selectors__block">
+      <div class="selectors__block" v-for="item in arrSel" :key="item.id">
         <button
           class="selectors__btn"
-          @click="moveCircle"
-          :class="{ right: isRight }"
+          @click="moveCircle(item)"
+          :class="{ right: item.isRight }"
         >
-          <p class="selectors__circle" :class="{ right: isRight }"></p>
+          <p class="selectors__circle" :class="{ right: item.isRight }"></p>
         </button>
-        <h3 class="selectors__title">{{text}}</h3>
+        <h3 class="selectors__title">{{ item.text }}</h3>
       </div>
     </div>
   </div>
@@ -17,27 +17,22 @@
 <script>
 export default {
   name: "vSelectors",
-	  props: {
-    initialState: {
-      type: Boolean,
-      default: false,
-			required: true,
-    },
-		text: {
-			type: String,
-			required: true,
-		}
-  },
   data() {
     return {
-      isRight: this.initialState
+      arrSel: [
+        { id: Date.now(), text: "Новинки" },
+        { id: Date.now(), text: "Есть в наличии" },
+        { id: Date.now(), text: "Контрактные" },
+        { id: Date.now(), text: "Эксклюзивные" },
+        { id: Date.now(), text: "Распродажа" },
+      ],
     };
   },
   methods: {
-    moveCircle() {
-      this.isRight = !this.isRight;
-    }
-  }
+    moveCircle(item) {
+      item.isRight = !item.isRight;
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -45,7 +40,8 @@ export default {
   &__block {
     width: 170px;
     display: flex;
-		align-items: center;
+    align-items: center;
+    margin-bottom: 10px;
   }
   &__btn {
     width: 36px;
@@ -72,7 +68,7 @@ export default {
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #1f2020;
-		margin-left: 12px;
+    margin-left: 12px;
   }
 }
 

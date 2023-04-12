@@ -1,5 +1,4 @@
 <template>
-	<div :class="{black : isOpen === true}"></div>
 	<div class="dropdown">
     <div class="dropdown-button" @click="isOpen = !isOpen">{{ selected }}</div>
     <div class="dropdown-menu" v-if="isOpen">
@@ -8,6 +7,8 @@
       </div>
     </div>
   </div>
+	<div :class="{ black : isOpen === true }"></div>
+
 </template>
 <script>
 export default {
@@ -38,6 +39,7 @@ export default {
 .dropdown{
   position: relative;
   z-index: 20;
+	background: white;
 }
 .dropdown-button {
 	cursor: pointer;
@@ -50,5 +52,15 @@ export default {
 }
 .dropdown-item {
 	cursor: pointer;
+}
+.black{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background: #000000;
+	opacity: 0.7;
 }
 </style>
