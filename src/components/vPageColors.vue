@@ -9,11 +9,15 @@
           </div>
         </div>
         <div class="pageColors__cards">
-          <h2 class="pageColors__title">{{ arrayLength }} товаров</h2>
+          <h2 class="pageColors__title">{{ arrayLength }} {{ isItem() }}</h2>
           <vProductCard @array-length="handleArrayLength" />
         </div>
         <div class="pageColors__filterSilect">
-          <filterSelector :items="itemSel" @select="handleSelect" :isOpen="isOpen"/>
+          <filterSelector
+            :items="itemSel"
+            @select="handleSelect"
+            :isOpen="isOpen"
+          />
         </div>
       </div>
     </div>
@@ -48,6 +52,19 @@ export default {
     handleArrayLength(length) {
       this.arrayLength = length;
     },
+    isItem() {
+      if (this.arrayLength % 10 === 1 && this.arrayLength !== 11) {
+        return "товар";
+      } else if (
+        this.arrayLength % 10 === 2 ||
+        this.arrayLength % 10 === 3 ||
+        this.arrayLength % 10 === 4
+      ) {
+        return "товара";
+      } else {
+        return "товаров";
+      }
+    },
   },
 };
 </script>
@@ -65,8 +82,9 @@ export default {
   }
   &__filterSilect {
     position: absolute;
+    width: 150px;
     top: 0;
-    left: 90%;
+    left: 88%;
   }
   &__title {
     margin-bottom: 45px;
@@ -85,5 +103,4 @@ export default {
     flex-direction: column;
   }
 }
-
 </style>

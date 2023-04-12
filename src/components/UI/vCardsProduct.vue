@@ -125,6 +125,17 @@ export default {
           sale: false,
           have: true,
         },
+				{
+          id: Date.now(),
+          title: "Краска Wallquest, Brownsone MS90102",
+          price: 5290,
+          image: "photoSix.png",
+          newest: true,
+          contract: false,
+          exclusive: false,
+          sale: true,
+          have: true,
+        },
       ],
     };
   },
