@@ -10,13 +10,11 @@
         </div>
         <div class="pageColors__cards">
           <h2 class="pageColors__title">{{ arrayLength }} {{ isItem() }}</h2>
-          <vProductCard @array-length="handleArrayLength" />
+          <vProductCard @array-length="handleArrayLength" :arrInfo="arrInfo" />
         </div>
         <div class="pageColors__filterSilect">
-          <filterSelector
-            :items="itemSel"
-            @select="handleSelect"
-            :isOpen="isOpen"
+          <filterSelector v-model="selectedSord"
+            :options="sortOptions"
           />
         </div>
       </div>
@@ -39,13 +37,159 @@ export default {
   },
   data() {
     return {
-      itemSel: [
-        { id: Date.now(), label: "Сначала дорогие" },
-        { id: Date.now(), label: "Сначала недорогие" },
-        { id: Date.now(), label: "Сначала популярные" },
-        { id: Date.now(), label: "Сначала новые" },
-      ],
       arrayLength: 0,
+      selectedSord: "",
+      sortOptions: [
+        { value: "expensive", name: "Сначала дорогие" },
+        { value: "cheap", name: "Сначала недорогие" },
+        { value: "popular", name: "Сначала популярные" },
+				{	value: "new", name: "Сначала новые"},
+      ],
+      arrInfo: [
+        {
+          id: Date.now(),
+          title: "Краска Wallquest, Brownsone MS90102",
+          price: 14900,
+          image: "photoOne.png",
+          newest: false,
+          contract: true,
+          exclusive: true,
+          sale: false,
+          have: false,
+          popular: 2,
+					new: 42,
+        },
+        {
+          id: Date.now(),
+          title: "Краска Wallquest, Brownsone MS90102",
+          price: 5290,
+          image: "photoSix.png",
+          newest: true,
+          contract: false,
+          exclusive: false,
+          sale: true,
+          have: true,
+          popular: 6,
+					new: 112,
+        },
+        {
+          id: Date.now(),
+          title: "Краска Wallquest, Brownsone MS90102",
+          price: 9823,
+          image: "photoTwo.png",
+          newest: true,
+          contract: true,
+          exclusive: true,
+          sale: false,
+          have: false,
+          popular: 1,
+					new: 12,
+        },
+        {
+          id: Date.now(),
+          title: "Краска Wallquest, Brownsone MS90102",
+          price: 12000,
+          image: "photoThree.png",
+          newest: true,
+          contract: false,
+          exclusive: false,
+          sale: true,
+          have: true,
+          popular: 12,
+					new: 1,
+        },
+        {
+          id: Date.now(),
+          title: "Краска Wallquest, Brownsone MS90102",
+          price: 3500,
+          image: "photoFour.png",
+          newest: true,
+          contract: true,
+          exclusive: true,
+          sale: false,
+          have: true,
+          popular: 321,
+					new: 12,
+        },
+        {
+          id: Date.now(),
+          title: "Краска Wallquest, Brownsone MS90102",
+          price: 4900,
+          image: "photoOne.png",
+          newest: true,
+          contract: true,
+          exclusive: false,
+          sale: false,
+          have: true,
+          popular: 23,
+					new: 1,
+        },
+        {
+          id: Date.now(),
+          title: "Краска Wallquest, Brownsone MS90102",
+          price: 51290,
+          image: "photoSix.png",
+          newest: false,
+          contract: true,
+          exclusive: true,
+          sale: true,
+          have: true,
+          popular: 21,
+					new: 172,
+        },
+        {
+          id: Date.now(),
+          title: "Краска Wallquest, Brownsone MS90102",
+          price: 1823,
+          image: "photoTwo.png",
+          newest: false,
+          contract: true,
+          exclusive: true,
+          sale: false,
+          have: true,
+					new: 12,
+          popular: 44,
+        },
+        {
+          id: Date.now(),
+          title: "Краска Wallquest, Brownsone MS90102",
+          price: 8000,
+          image: "photoThree.png",
+          newest: true,
+          contract: false,
+          exclusive: false,
+          sale: true,
+          have: true,
+          popular: 5,
+					new: 82,
+        },
+        {
+          id: Date.now(),
+          title: "Краска Wallquest, Brownsone MS90102",
+          price: 7500,
+          image: "photoFour.png",
+          newest: false,
+          contract: true,
+          exclusive: true,
+          sale: false,
+          have: true,
+          popular: 8,
+					new: 16,
+        },
+        {
+          id: Date.now(),
+          title: "Краска Wallquest, Brownsone MS90102",
+          price: 5290,
+          image: "photoSix.png",
+          newest: true,
+          contract: false,
+          exclusive: false,
+          sale: true,
+          have: true,
+          popular: 91,
+					new: 13,
+        },
+      ],
     };
   },
   methods: {
@@ -66,6 +210,21 @@ export default {
       }
     },
   },
+  watch: {
+    selectedSord() {
+      if (this.selectedSord === "expensive") {
+        return this.arrInfo.sort((a, b) => b.price - a.price);
+      } else if (this.selectedSord === "cheap") {
+        return this.arrInfo.sort((a, b) => a.price - b.price);
+      } else if (this.selectedSord === "popular") {
+				return this.arrInfo.sort((a, b) => b.popular - a.popular)
+			} else if (this.selectedSord === "new") {
+				return this.arrInfo.sort((a, b) => b.new - a.new)
+			} else {
+				console.log('Error')
+			}
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -82,7 +241,6 @@ export default {
   }
   &__filterSilect {
     position: absolute;
-    width: 150px;
     top: 0;
     left: 88%;
   }
