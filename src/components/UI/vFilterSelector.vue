@@ -9,12 +9,11 @@
     <option
       class="select__item"
       v-for="option in options"
-      :key="option.value"
+      :key="option.id"
       :value="option.value"
     >
       {{ option.name }}
     </option>
-    <div :class="{ black: isOpen === true }"></div>
   </select>
   <div :class="{ black: isOpen === true }"></div>
 </template>

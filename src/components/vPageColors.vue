@@ -5,17 +5,21 @@
       <div class="pageColors__wrapper">
         <div class="pageColors__sel">
           <div class="pageColors__sel-items">
-            <vSelectors />
+            <vSelectors
+              :filteredContract="filteredContract"
+              :filteredHave="filteredHave"
+              :filteredNewest="filteredNewest"
+              :filteredSale="filteredSale"
+              :filteredExclusive="filteredExclusive"
+            />
           </div>
         </div>
         <div class="pageColors__cards">
-          <h2 class="pageColors__title">{{ arrayLength }} {{ isItem() }}</h2>
+          <h2 class="pageColors__title">{{ clearArr() }} {{ isItem }}</h2>
           <vProductCard @array-length="handleArrayLength" :arrInfo="arrInfo" />
         </div>
         <div class="pageColors__filterSilect">
-          <filterSelector v-model="selectedSord"
-            :options="sortOptions"
-          />
+          <filterSelector v-model="selectedSord" :options="sortOptions" />
         </div>
       </div>
     </div>
@@ -40,10 +44,10 @@ export default {
       arrayLength: 0,
       selectedSord: "",
       sortOptions: [
-        { value: "expensive", name: "Сначала дорогие" },
-        { value: "cheap", name: "Сначала недорогие" },
-        { value: "popular", name: "Сначала популярные" },
-				{	value: "new", name: "Сначала новые"},
+        { id: Date.now(), value: "expensive", name: "Сначала дорогие" },
+        { id: Date.now(), value: "cheap", name: "Сначала недорогие" },
+        { id: Date.now(), value: "popular", name: "Сначала популярные" },
+        { id: Date.now(), value: "new", name: "Сначала новые" },
       ],
       arrInfo: [
         {
@@ -57,7 +61,7 @@ export default {
           sale: false,
           have: false,
           popular: 2,
-					new: 42,
+          new: 42,
         },
         {
           id: Date.now(),
@@ -70,7 +74,7 @@ export default {
           sale: true,
           have: true,
           popular: 6,
-					new: 112,
+          new: 112,
         },
         {
           id: Date.now(),
@@ -83,7 +87,7 @@ export default {
           sale: false,
           have: false,
           popular: 1,
-					new: 12,
+          new: 12,
         },
         {
           id: Date.now(),
@@ -96,7 +100,7 @@ export default {
           sale: true,
           have: true,
           popular: 12,
-					new: 1,
+          new: 1,
         },
         {
           id: Date.now(),
@@ -109,7 +113,7 @@ export default {
           sale: false,
           have: true,
           popular: 321,
-					new: 12,
+          new: 12,
         },
         {
           id: Date.now(),
@@ -122,7 +126,7 @@ export default {
           sale: false,
           have: true,
           popular: 23,
-					new: 1,
+          new: 1,
         },
         {
           id: Date.now(),
@@ -135,7 +139,7 @@ export default {
           sale: true,
           have: true,
           popular: 21,
-					new: 172,
+          new: 172,
         },
         {
           id: Date.now(),
@@ -147,7 +151,7 @@ export default {
           exclusive: true,
           sale: false,
           have: true,
-					new: 12,
+          new: 12,
           popular: 44,
         },
         {
@@ -161,7 +165,7 @@ export default {
           sale: true,
           have: true,
           popular: 5,
-					new: 82,
+          new: 82,
         },
         {
           id: Date.now(),
@@ -174,7 +178,7 @@ export default {
           sale: false,
           have: true,
           popular: 8,
-					new: 16,
+          new: 16,
         },
         {
           id: Date.now(),
@@ -187,15 +191,89 @@ export default {
           sale: true,
           have: true,
           popular: 91,
-					new: 13,
+          new: 13,
         },
       ],
+      isFiltered: false,
+      newArr: [],
+      arrSel: [
+        { id: Date.now(), text: "Новинки" },
+        { id: Date.now(), text: "Есть в наличии" },
+        { id: Date.now(), text: "Контрактные" },
+        { id: Date.now(), text: "Эксклюзивные" },
+        { id: Date.now(), text: "Распродажа" },
+      ],
+      initialArrInfo: [],
+      filtered: false,
     };
+  },
+  mounted() {
+    this.initialArrInfo = this.arrInfo;
   },
   methods: {
     handleArrayLength(length) {
       this.arrayLength = length;
     },
+    filteredSale() {
+      if (this.filtered) {
+        this.filtered = false;
+        this.arrInfo = this.initialArrInfo;
+      } else {
+        this.filtered = true;
+        this.arrInfo = this.initialArrInfo.filter((item) => item.sale === true);
+      }
+    },
+    filteredContract() {
+      if (this.filtered) {
+        this.isFiltered = false;
+        this.arrInfo = this.initialArrInfo;
+      } else {
+        this.isFiltered = true;
+        this.arrInfo = this.initialArrInfo.filter(
+          (item) => item.contract === true
+        );
+      }
+    },
+    filteredNewest() {
+      if (this.filtered) {
+        this.isFiltered = false;
+        this.arrInfo = this.initialArrInfo;
+      } else {
+        this.isFiltered = true;
+        this.arrInfo = this.initialArrInfo.filter(
+          (item) => item.newest === true
+        );
+      }
+    },
+    filteredExclusive() {
+      if (this.filtered) {
+        this.isFiltered = false;
+        this.arrInfo = this.initialArrInfo;
+      } else {
+        this.isFiltered = true;
+        this.arrInfo = this.initialArrInfo.filter(
+          (item) => item.exclusive === true
+        );
+      }
+    },
+    filteredHave() {
+      if (this.filtered) {
+        this.isFiltered = false;
+        this.arrInfo = this.initialArrInfo;
+      } else {
+        this.isFiltered = true;
+        this.arrInfo = this.initialArrInfo.filter((item) => item.have === true);
+      }
+    },
+    clearArr() {
+      if (this.newArr.length !== 0) {
+        return this.newArr.length;
+      } else {
+        return this.arrInfo.length;
+      }
+    },
+  },
+  computed: {
     isItem() {
       if (this.arrayLength % 10 === 1 && this.arrayLength !== 11) {
         return "товар";
@@ -217,12 +295,12 @@ export default {
       } else if (this.selectedSord === "cheap") {
         return this.arrInfo.sort((a, b) => a.price - b.price);
       } else if (this.selectedSord === "popular") {
-				return this.arrInfo.sort((a, b) => b.popular - a.popular)
-			} else if (this.selectedSord === "new") {
-				return this.arrInfo.sort((a, b) => b.new - a.new)
-			} else {
-				console.log('Error')
-			}
+        return this.arrInfo.sort((a, b) => b.popular - a.popular);
+      } else if (this.selectedSord === "new") {
+        return this.arrInfo.sort((a, b) => b.new - a.new);
+      } else {
+        console.log("Error");
+      }
     },
   },
 };
