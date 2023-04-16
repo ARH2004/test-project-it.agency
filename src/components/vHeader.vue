@@ -67,7 +67,7 @@
         </div>
       </div>
     </div>
-    <vCart :isModalDialog="isModalDialog"/>
+    <vCart :isModalDialog="isModalDialog" @closeBasket="handleBasketClose"/>
   </div>
 </template>
 
@@ -87,7 +87,10 @@ export default {
 	methods: {
 		openShoper(){
 			this.isModalDialog = !this.isModalDialog
-		}
+		},
+		handleBasketClose() { // обработчик события "closeBasket"
+      this.isModalDialog = false
+    },
 	}
 };
 </script>
