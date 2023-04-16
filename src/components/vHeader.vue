@@ -118,13 +118,11 @@ export default {
   &__count {
     position: absolute;
     top: 18%;
-    left: 35%;
+    left: 33%;
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
-    text-align: center;
     letter-spacing: 0.06em;
-    text-transform: uppercase;
     color: #1f2020;
   }
   &__list {
