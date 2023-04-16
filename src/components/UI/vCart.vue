@@ -17,7 +17,7 @@
             <h4 class="cart__count">
               {{ this.$store.getters.isCarts.length }} {{isItem}}
             </h4>
-            <button class="cart__clear">очистить список</button>
+            <button class="cart__clear" @click="delAllItem">очистить список</button>
           </div>
           <div
             class="cart__basket-card"
@@ -102,6 +102,9 @@ export default {
     countProductMinus() {
       this.count--;
     },
+		delAllItem() {
+			this.$store.getters.isCarts.length = 0
+		}
   },
   computed: {
     cartItems() {
