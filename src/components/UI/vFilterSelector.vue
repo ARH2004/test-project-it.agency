@@ -3,7 +3,7 @@
     class="select"
     :value="modelValue"
     @input="changeOption($event.target.value)"
-    @click="isOpen = !isOpen"
+    @click="closeFilterDialog"
   >
     <option class="select__dis" disabled value="">Выберите из списка</option>
     <option
@@ -15,7 +15,7 @@
       {{ option.name }}
     </option>
   </select>
-  <div :class="{ black: isOpen === true }"></div>
+  <div @click="closeFilterDialog" :class="{ black: isOpen === true }"></div>
 </template>
 <script>
 export default {
@@ -39,6 +39,9 @@ export default {
     changeOption(event) {
       this.$emit("update:modelValue", event);
     },
+		closeFilterDialog(){
+			this.isOpen = !this.isOpen
+		}
   },
 };
 </script>

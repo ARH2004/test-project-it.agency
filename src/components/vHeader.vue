@@ -68,7 +68,7 @@
       </div>
     </div>
     <vCart :isModalDialog="isModalDialog" @closeBasket="handleBasketClose" />
-		<div :class="{ black: isModalDialog === true }"></div>
+		<div @click="openShoper" :class="{ black: isModalDialog === true }"></div>
   </div>
 </template>
 
