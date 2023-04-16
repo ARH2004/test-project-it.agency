@@ -1,7 +1,7 @@
 <template>
   <div class="cardsProduct">
     <div class="cardsProduct__item" v-for="item in arrInfo" :key="item.id">
-      <vCard :image="item.image" :title="item.title" :price="item.price" />
+      <vCard :item="item" />
     </div>
   </div>
 </template>

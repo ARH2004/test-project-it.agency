@@ -1,14 +1,14 @@
 <template>
   <div class="card" @mouseover="isHovered = true" @mouseleave="isHovered = false">
     <div class="card__wrapper">
-      <img :src="require('@/assets/images/' + image)" alt="card" class="card__img" />
-      <h3 class="card__title">{{ title }}</h3>
+      <img :src="require('@/assets/images/' + item.image)" alt="card" class="card__img" />
+      <h3 class="card__title">{{ item.title }}</h3>
       <div class="card__info-block">
         <div class="card__price">
-					<p class="card__price-number">{{ price }}</p>
+					<p class="card__price-number">{{ item.price }}</p>
 					<p class="card__price-rub">₽</p>
 				</div>
-        <button class="card__btn" v-if="isHovered">
+        <button class="card__btn" v-if="isHovered" @click="addToCard(item)">
           <img
             src="@/assets/images/icons/plus.svg"
             alt="plus"
@@ -24,22 +24,26 @@
 export default {
   name: "vCard",
   props: {
-    image: {
+		item : {
+			image: {
       type: String,
-      required: true,
     },
-		title: {
+			title: {
 			type: String,
-      required: true,
 		},
-		price: {
+			price: {
 			type: Number,
-      required: true,
+		}
 		}
 	},
 	data() {
 		return {
 			isHovered: false,
+		}
+	},
+	methods: {
+		addToCard(item){
+			this.$store.commit('addItemToCart', item)
 		}
 	}
 };

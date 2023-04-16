@@ -1,5 +1,6 @@
 <template>
   <div class="pageColors">
+    <vCart />
     <vSlider />
     <div class="container-mini">
       <div class="pageColors__wrapper">
@@ -30,6 +31,7 @@ import vSlider from "@/components/UI/vSlider.vue";
 import vSelectors from "@/components/UI/vSelectors.vue";
 import vProductCard from "@/components/UI/vCardsProduct.vue";
 import filterSelector from "@/components/UI/vFilterSelector.vue";
+import vCart from "@/components/UI/vCart.vue";
 
 export default {
   name: "vPageColor",
@@ -38,6 +40,7 @@ export default {
     vSelectors,
     vProductCard,
     filterSelector,
+    vCart,
   },
   data() {
     return {
@@ -197,11 +200,11 @@ export default {
       isFiltered: false,
       newArr: [],
       arrSel: [
-        { id: Date.now(), text: "Новинки" },
-        { id: Date.now(), text: "Есть в наличии" },
-        { id: Date.now(), text: "Контрактные" },
-        { id: Date.now(), text: "Эксклюзивные" },
-        { id: Date.now(), text: "Распродажа" },
+        { id: Date.now(), teg: 1, text: "Новинки" },
+        { id: Date.now(), teg: 2, text: "Есть в наличии" },
+        { id: Date.now(), teg: 3, text: "Контрактные" },
+        { id: Date.now(), teg: 4, text: "Эксклюзивные" },
+        { id: Date.now(), teg: 5, text: "Распродажа" },
       ],
       initialArrInfo: [],
       filtered: false,
@@ -290,16 +293,18 @@ export default {
   },
   watch: {
     selectedSord() {
-      if (this.selectedSord === "expensive") {
-        return this.arrInfo.sort((a, b) => b.price - a.price);
-      } else if (this.selectedSord === "cheap") {
-        return this.arrInfo.sort((a, b) => a.price - b.price);
-      } else if (this.selectedSord === "popular") {
-        return this.arrInfo.sort((a, b) => b.popular - a.popular);
-      } else if (this.selectedSord === "new") {
-        return this.arrInfo.sort((a, b) => b.new - a.new);
-      } else {
-        console.log("Error");
+      switch (this.selectedSord) {
+        case "expensive":
+          return this.arrInfo.sort((a, b) => b.price - a.price);
+        case "cheap":
+          return this.arrInfo.sort((a, b) => a.price - b.price);
+        case "popular":
+          return this.arrInfo.sort((a, b) => b.popular - a.popular);
+        case "new":
+          return this.arrInfo.sort((a, b) => b.new - a.new);
+        default:
+          console.log("Error");
+          break;
       }
     },
   },
