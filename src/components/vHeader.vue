@@ -68,6 +68,7 @@
       </div>
     </div>
     <vCart :isModalDialog="isModalDialog" @closeBasket="handleBasketClose" />
+		<div :class="{ black: isModalDialog === true }"></div>
   </div>
 </template>
 
@@ -174,5 +175,15 @@ export default {
 
 .header__list:last-child {
   margin-right: 0;
+}
+.black {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 21;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  opacity: 0.7;
 }
 </style>
