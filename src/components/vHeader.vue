@@ -53,7 +53,10 @@
                 class="header__search"
               />
             </button>
-            <button class="header__btn">
+            <button class="header__btn" @click="openShoper">
+              <p class="header__count">
+                {{ this.$store.getters.isCarts.length }}
+              </p>
               <img
                 src="@/assets/images/icons/shoper.svg"
                 alt="search"
@@ -64,11 +67,29 @@
         </div>
       </div>
     </div>
+    <vCart :isModalDialog="isModalDialog"/>
   </div>
 </template>
 
 <script>
-export default {};
+import vCart from '@/components/UI/vCart.vue';
+
+export default {
+	name: 'vHeader',
+	components: {
+		vCart,
+	},
+	data(){
+		return {
+			isModalDialog: false,
+		}
+	},
+	methods: {
+		openShoper(){
+			this.isModalDialog = !this.isModalDialog
+		}
+	}
+};
 </script>
 
 <style scoped lang="scss">
@@ -83,55 +104,68 @@ export default {};
     justify-content: space-between;
     align-items: center;
   }
-	&__left-block{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		width: 900px;
-	}
+  &__left-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 900px;
+  }
+  &__count {
+    position: absolute;
+    top: 18%;
+    left: 35%;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #1f2020;
+  }
   &__list {
     display: flex;
   }
   &__item {
     margin-right: 25px;
   }
-	&__link{
-		font-weight: 400;
-		font-size: 14px;
-		line-height: 100%;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		color: #1F2020;
-	}
-	&__right-block{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		width: 400px;
-	}
-	&__tel{
-		font-weight: 500;
-		font-size: 16px;
-		line-height: 100%;
-		letter-spacing: -0.02em;
-		color: #1F2020;
-	}
-	&__navigation{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		width: 150px;
-	}
-	&__del-tel{
-		background: none;
-		font-weight: 400;
-		font-size: 14px;
-		line-height: 100%;
-		color: #1F2020;
-		opacity: 0.3;
-	}
+  &__link {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #1f2020;
+  }
+  &__right-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+  }
+  &__tel {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: #1f2020;
+  }
+  &__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 150px;
+  }
+  &__del-tel {
+    background: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: #1f2020;
+    opacity: 0.3;
+  }
   &__btn {
     background: none;
+    position: relative;
   }
 }
 

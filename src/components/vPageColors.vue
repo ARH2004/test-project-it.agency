@@ -1,6 +1,5 @@
 <template>
   <div class="pageColors">
-    <vCart />
     <vSlider />
     <div class="container-mini">
       <div class="pageColors__wrapper">

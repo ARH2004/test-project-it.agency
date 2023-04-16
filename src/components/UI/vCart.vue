@@ -1,5 +1,5 @@
 <template>
-	<div class="cart" >
+	<div class="cart" v-if="isModalDialog">
 		<div v-for="item in cartItems">
 			{{ item.title }}
 		</div>
@@ -13,6 +13,12 @@ export default {
       return this.$store.getters.isCarts;
     },
   },
+	props: {
+		isModalDialog: {
+			type: Boolean,
+      required: true,
+		}
+	}
 }
 </script>
 <style lang="scss" scoped>
