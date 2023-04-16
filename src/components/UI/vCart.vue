@@ -15,7 +15,7 @@
           </div>
           <div class="cart__basket-count-clear">
             <h4 class="cart__count">
-              {{ this.$store.getters.isCarts.length }} товара
+              {{ this.$store.getters.isCarts.length }} {{isItem}}
             </h4>
             <button class="cart__clear">очистить список</button>
           </div>
@@ -70,7 +70,7 @@
         <div class="cart__total">
           <div class="cart__final-total">
             <h3 class="cart__total-title">Итого</h3>
-            <h2 class="cart__total-count">{{sumMonyItem}}</h2>
+            <h2 class="cart__total-count">{{sumMonyItem}}₽</h2>
           </div>
           <button class="cart__buy">Оформить заказ</button>
         </div>
@@ -112,7 +112,20 @@ export default {
 				return acc + el.price
 			}, 0)
 			return count
-		}
+		},
+		isItem() {
+      if (this.$store.getters.isCarts.length % 10 === 1 && this.$store.getters.isCarts.length !== 11) {
+        return "товар";
+      } else if (
+        this.$store.getters.isCarts.length % 10 === 2 ||
+        this.$store.getters.isCarts.length % 10 === 3 ||
+        this.$store.getters.isCarts.length % 10 === 4
+      ) {
+        return "товара";
+      } else {
+        return "товаров";
+      }
+    },
   },
 };
 </script>
