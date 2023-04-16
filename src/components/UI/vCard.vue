@@ -1,13 +1,20 @@
 <template>
-  <div class="card" @mouseover="isHovered = true" @mouseleave="isHovered = false">
+  <div
+    class="card"
+    @mouseover="isHovered = true"
+    @mouseleave="isHovered = false"
+  >
     <div class="card__wrapper">
-      <img :src="require('@/assets/images/' + item.image)" alt="card" class="card__img" />
+      <img
+        :src="require('@/assets/images/' + item.image)"
+        alt="card"
+        class="card__img"
+      />
       <h3 class="card__title">{{ item.title }}</h3>
       <div class="card__info-block">
         <div class="card__price">
-					<p class="card__price-number">{{ item.price }}</p>
-					<p class="card__price-rub">₽</p>
-				</div>
+          <p class="card__price-number">{{ item.price }} ₽</p>
+        </div>
         <button class="card__btn" v-if="isHovered" @click="addToCard(item)">
           <img
             src="@/assets/images/icons/plus.svg"
@@ -24,35 +31,35 @@
 export default {
   name: "vCard",
   props: {
-		item : {
-			image: {
-      type: String,
+    item: {
+      image: {
+        type: String,
+      },
+      title: {
+        type: String,
+      },
+      price: {
+        type: Number,
+      },
     },
-			title: {
-			type: String,
-		},
-			price: {
-			type: Number,
-		}
-		}
-	},
-	data() {
-		return {
-			isHovered: false,
-		}
-	},
-	methods: {
-		addToCard(item){
-			this.$store.commit('addItemToCart', item)
-		}
-	}
+  },
+  data() {
+    return {
+      isHovered: false,
+    };
+  },
+  methods: {
+    addToCard(item) {
+      this.$store.commit("addItemToCart", item);
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
 .card {
   margin: 0px 25px 30px 0px;
   &__info-block {
-		height: 30px;
+    height: 30px;
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
@@ -76,15 +83,12 @@ export default {
     color: #1f2020;
   }
   &__price {
-		display: flex;
+    display: flex;
     font-weight: 600;
     font-size: 16px;
     line-height: 100%;
     color: #1f2020;
   }
-	&__price-rub {
-		margin-left: 5px;
-	}
   &__btn {
     width: 80px;
     height: 32px;

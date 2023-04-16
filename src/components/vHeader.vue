@@ -67,40 +67,42 @@
         </div>
       </div>
     </div>
-    <vCart :isModalDialog="isModalDialog" @closeBasket="handleBasketClose"/>
+    <vCart :isModalDialog="isModalDialog" @closeBasket="handleBasketClose" />
   </div>
 </template>
 
 <script>
-import vCart from '@/components/UI/vCart.vue';
+import vCart from "@/components/UI/vCart.vue";
 
 export default {
-	name: 'vHeader',
-	components: {
-		vCart,
-	},
-	data(){
-		return {
-			isModalDialog: false,
-		}
-	},
-	methods: {
-		openShoper(){
-			this.isModalDialog = !this.isModalDialog
-		},
-		handleBasketClose() { // обработчик события "closeBasket"
-      this.isModalDialog = false
+  name: "vHeader",
+  components: {
+    vCart,
+  },
+  data() {
+    return {
+      isModalDialog: false,
+    };
+  },
+  methods: {
+    openShoper() {
+      this.isModalDialog = !this.isModalDialog;
     },
-	}
+    handleBasketClose() {
+      this.isModalDialog = false;
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 .container {
   max-width: 1700px;
   margin: 0 auto;
 }
 .header {
+  font-family: "Inter";
   padding: 45px 65px 45px 65px;
   &__wrapper {
     display: flex;

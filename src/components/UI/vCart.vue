@@ -1,81 +1,221 @@
 <template>
-	<div class="cart" v-if="isModalDialog">
-		<div class="container">
-			<div class="cart__wrapper">
-				<div class="cart__basket">
-					<h2 class="cart__title">Корзина</h2>
-					<button class="cart__exit" @click="hideBasket()">
-						<img src="@/assets/images/icons/x.svg" alt="exit-icon" class="cart__exit-x">
-					</button>
-				</div>
-				<div class="cart__basket-count-clear" v-if="closeBasket">
-					<h4 class="cart__count">{{ this.$store.getters.isCarts.length }} товара</h4>
-					<button class="cart__clear">очистить список</button>
-					<hr class="cart__line" />
-				</div>
-				<div class="cart__basket-card" v-for="item in cartItems" :key="item.id">
-					<div class="cart__img-info">
-						<img :src="require('@/assets/images/' + item.image)" alt="image-product" class="cart__imgProduct">
-						<div class="cart__info">
-							<h3 class="cart__info-title">{{ item.title }}</h3>
-							<p class="cart__info-price">{{ item.price }}</p>
-						</div>
-					</div>
-					<div class="cart__btn-close"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="cart" v-if="isModalDialog">
+    <div class="container">
+      <div class="cart__wrapper">
+        <div class="cart__basket">
+          <h2 class="cart__title">Корзина</h2>
+          <button class="cart__exit" @click="hideBasket()">
+            <img
+              src="@/assets/images/icons/x.svg"
+              alt="exit-icon"
+              class="cart__exit-x"
+            />
+          </button>
+        </div>
+        <div class="cart__basket-count-clear">
+          <h4 class="cart__count">
+            {{ this.$store.getters.isCarts.length }} товара
+          </h4>
+          <button class="cart__clear">очистить список</button>
+        </div>
+        <div class="cart__basket-card" v-for="item in cartItems" :key="item.id">
+          <hr class="cart__line" />
+          <div class="cart__btw">
+            <div class="cart__img-info">
+              <div class="cart__img">
+                <img
+                  :src="require('@/assets/images/' + item.image)"
+                  alt="image-product"
+                  class="cart__imgProduct"
+                />
+              </div>
+              <div class="cart__info">
+                <h3 class="cart__info-title">{{ item.title }}</h3>
+                <p class="cart__info-price">{{ item.price }} ₽</p>
+              </div>
+            </div>
+            <div class="cart__btn-close">
+              <div class="cart__btn-mp">
+                <button class="cart__minus" @click="countProductMinus">
+									<img class="cart__minus-btn" src="@/assets/images/icons/minus.svg" alt="icon-minus">
+								</button>
+                <p class="cart__text-count">{{ count }}</p>
+                <button class="cart__plus" @click="countProductPlus">
+									<img src="@/assets/images/icons/plusBascet.svg" alt="icon-plus">
+								</button>
+              </div>
+              <button class="cart__btn-del">
+                <img
+                  src="@/assets/images/icons/xGrey.svg"
+                  alt="icon"
+                  class="cart__del-img"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 export default {
-	name: 'vCart',
-	props: {
-		isModalDialog: {
-			type: Boolean,
+  name: "vCart",
+  props: {
+    isModalDialog: {
+      type: Boolean,
       required: true,
+    },
+  },
+	data(){
+		return {
+			count: 0,
 		}
 	},
   methods: {
     hideBasket() {
-      this.$emit('closeBasket') // вызов события "closeBasket"
+      this.$emit("closeBasket");
     },
-	},
-	  computed: {
+		countProductPlus(){
+			this.count ++
+		},
+		countProductMinus(){
+			this.count --
+		}
+  },
+  computed: {
     cartItems() {
       return this.$store.getters.isCarts;
     },
   },
-}
+};
 </script>
 <style lang="scss" scoped>
-.container{
-	max-width: 600px;
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+.container {
+  padding: 40px 40px;
+  margin: 0 auto;
 }
-.cart{
-	&__wrapper{
-		display: flex;
-		flex-direction: column;
+.cart {
+  font-family: "Inter";
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 111;
+  background: white;
+  width: 600px;
+  height: 100%;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  &__basket {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 95px;
+  }
+  &__basket-count-clear {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__btw {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__count {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 112%;
+    color: #1f2020;
+  }
+  &__minus {
+    background: #f2f2f2;
+    border-radius: 4px;
+    width: 40px;
+    height: 24px;
+		margin-right: 20px;
+  }
+  &__plus {
+    background: #f2f2f2;
+    border-radius: 4px;
+    width: 40px;
+    height: 24px;
+		margin-left: 21px;
+  }
+  &__imgProduct {
+    width: 150px;
+  }
+  &__info {
+    margin-top: 20px;
+    width: 170px;
+    margin-left: -20px;
+  }
+  &__line {
+    position: relative;
+    top: 15px;
+    left: 0;
+    width: 520px;
+    height: 1px;
+    background: #000000;
+    opacity: 0.1;
+  }
+	&__minus-btn{
+		padding: 11px 15px;
 	}
-	&__basket{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	&__title{
-		font-weight: 500;
-font-size: 30px;
-line-height: 88%;
-letter-spacing: -0.04em;
-color: #1F2020;
-	}
-	&__exit{
-		background: none;
-		opacity: 0.1;
-border: 1px solid #000000;
-border-radius: 50%;
-width: 48px;
-height: 48px;
-	}
+  &__info-title {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    color: #1f2020;
+  }
+  &__btn-mp {
+    display: flex;
+    align-items: center;
+  }
+  &__info-price {
+    margin-top: 16px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    color: #1f2020;
+  }
+  &__btn-del {
+    background: none;
+		margin-left: 25px;
+  }
+  &__btn-close {
+    display: flex;
+    align-items: center;
+  }
+  &__img-info {
+    display: flex;
+    align-items: center;
+  }
+  &__clear {
+    background: none;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 112%;
+    color: #1f2020;
+    opacity: 0.4;
+  }
+  &__title {
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 88%;
+    letter-spacing: -0.04em;
+    color: #1f2020;
+  }
+  &__exit {
+    background: none;
+    border: 1px solid #e6e6e6;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+  }
 }
 </style>
