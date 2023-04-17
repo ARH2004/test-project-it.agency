@@ -229,6 +229,7 @@ export default {
 
 @media (max-width: 1200px) {
 .header{
+  padding: 45px 25px 45px 25px;
 	&__wrapper{
 		display: none;
 	}

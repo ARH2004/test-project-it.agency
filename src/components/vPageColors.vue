@@ -1,6 +1,25 @@
 <template>
   <div class="pageColors">
-    <vSlider />
+		<hr class="pageColors__line-mob" />
+		<div class="pageColors__pagination-text-mob">
+      <button class="pageColors__btn">ГЛАВНАЯ</button>
+      <img
+        src="@/assets/images/icons/ellipse.svg"
+        alt="ellip"
+        class="pageColors__ellipse"
+      />
+      <button class="pageColors__btn">ПРОДУКТЫ</button>
+      <img
+        src="@/assets/images/icons/ellipse.svg"
+        alt="ellip"
+        class="pageColors__ellipse"
+      />
+      <button class="pageColors__btn">КРАСКИ</button>
+    </div>
+		<h1 class="pageColors__title-mob">Краски</h1>
+		<div class="pageColors__vSlider">
+    	<vSlider />
+		</div>
     <div class="container-mini">
       <div class="pageColors__wrapper">
         <div class="pageColors__sel">
@@ -335,12 +354,65 @@ export default {
     text-transform: uppercase;
     color: #1f2020;
   }
+	&__pagination-text-mob{
+		display: none;
+	}
+	&__line-mob{
+		display: none;
+		position: relative;
+    top: 0px;
+    left: 0;
+    width: 95vw;
+		margin: 0 auto;
+    height: 1px;
+    background: #000000;
+    opacity: 0.1;
+	}
   &__cards {
     margin-left: 140px;
   }
+	&__title-mob{
+		display: none;
+		font-weight: 400;
+		font-size: 36px;
+		line-height: 88%;
+		letter-spacing: -0.04em;
+		color: #1F2020;
+	}
+	&__btn{
+		background: none;
+		font-weight: 400;
+		font-size: 10px;
+		line-height: 100%;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: #1F2020;
+		opacity: 0.3;
+	}
   &__sel {
     display: flex;
     flex-direction: column;
   }
+}
+@media (max-width: 1200px) {
+	.pageColors{
+		&__vSlider{
+			display: none;
+		}
+		&__line-mob{
+			display: block;
+		}
+		&__pagination-text-mob{
+			margin: 40px 25px 0px 25px;
+			display: flex;
+			width: 200px;
+			justify-content: space-between;
+			align-items: center;
+	}
+	&__title-mob{
+		display: block;
+		margin: 50px 25px;
+	}
+	}
 }
 </style>
