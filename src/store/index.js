@@ -6,12 +6,30 @@ export default createStore({
   },
   getters: {
     isCarts: (state) => {
-      return state.arrCart
+      return state.arrCart;
     },
   },
   mutations: {
     addItemToCart(state, item) {
       state.arrCart.push(item);
+    },
+    findItemTocardPlus(state, item) {
+      console.log(item);
+      const arrTrue = state.arrCart?.filter((el) => {
+        if (el.id === item.id) {
+          return (el.count += 1);
+        }
+      });
+      return arrTrue;
+    },
+    findItemTocardMinus(state, item) {
+      console.log(item);
+      const arrTrue = state.arrCart?.filter((el) => {
+        if (el.id === item.id) {
+          return (el.count -= 1);
+        }
+      });
+      return arrTrue;
     },
   },
   actions: {},

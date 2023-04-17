@@ -48,7 +48,7 @@
                       alt="icon-minus"
                     />
                   </button>
-                  <p class="cart__text-count">{{ count }}</p>
+                  <p class="cart__text-count">{{ item.count }}</p>
                   <button class="cart__plus" @click="countProductPlus(item)">
                     <img
                       src="@/assets/images/icons/plusBascet.svg"
@@ -96,11 +96,11 @@ export default {
     hideBasket() {
       this.$emit("closeBasket");
     },
-    countProductPlus() {
-      this.count++;
+    countProductPlus(item) {
+      this.$store.commit("findItemTocardPlus", item);
     },
-    countProductMinus() {
-      this.count--;
+		countProductMinus(item) {
+      this.$store.commit("findItemTocardMinus", item);
     },
 		delAllItem() {
 			this.$store.getters.isCarts.length = 0

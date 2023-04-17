@@ -72,7 +72,7 @@ export default {
       ],
       arrInfo: [
         {
-          id: Date.now(),
+          id: 1,
           title: "Краска Wallquest, Brownsone MS90102",
           price: 14900,
           image: "photoOne.png",
@@ -83,9 +83,10 @@ export default {
           have: false,
           popular: 2,
           new: 42,
+					count: 1,
         },
         {
-          id: Date.now(),
+          id: 2,
           title: "Краска Wallquest, Brownsone MS90102",
           price: 5290,
           image: "photoSix.png",
@@ -96,9 +97,10 @@ export default {
           have: true,
           popular: 6,
           new: 112,
+					count: 1,
         },
         {
-          id: Date.now(),
+          id: 3,
           title: "Краска Wallquest, Brownsone MS90102",
           price: 9823,
           image: "photoTwo.png",
@@ -109,9 +111,10 @@ export default {
           have: false,
           popular: 1,
           new: 12,
+					count: 1,
         },
         {
-          id: Date.now(),
+          id: 4,
           title: "Краска Wallquest, Brownsone MS90102",
           price: 12000,
           image: "photoThree.png",
@@ -122,9 +125,10 @@ export default {
           have: true,
           popular: 12,
           new: 1,
+					count: 1,
         },
         {
-          id: Date.now(),
+          id: 5,
           title: "Краска Wallquest, Brownsone MS90102",
           price: 3500,
           image: "photoFour.png",
@@ -135,9 +139,10 @@ export default {
           have: true,
           popular: 321,
           new: 12,
+					count: 1,
         },
         {
-          id: Date.now(),
+          id: 6,
           title: "Краска Wallquest, Brownsone MS90102",
           price: 4900,
           image: "photoOne.png",
@@ -148,9 +153,10 @@ export default {
           have: true,
           popular: 23,
           new: 1,
+					count: 1,
         },
         {
-          id: Date.now(),
+          id: 7,
           title: "Краска Wallquest, Brownsone MS90102",
           price: 51290,
           image: "photoSix.png",
@@ -161,9 +167,10 @@ export default {
           have: true,
           popular: 21,
           new: 172,
+					count: 1,
         },
         {
-          id: Date.now(),
+          id: 8,
           title: "Краска Wallquest, Brownsone MS90102",
           price: 1823,
           image: "photoTwo.png",
@@ -174,9 +181,10 @@ export default {
           have: true,
           new: 12,
           popular: 44,
+					count: 1,
         },
         {
-          id: Date.now(),
+          id: 9,
           title: "Краска Wallquest, Brownsone MS90102",
           price: 8000,
           image: "photoThree.png",
@@ -187,9 +195,10 @@ export default {
           have: true,
           popular: 5,
           new: 82,
+					count: 1,
         },
         {
-          id: Date.now(),
+          id: 10,
           title: "Краска Wallquest, Brownsone MS90102",
           price: 7500,
           image: "photoFour.png",
@@ -200,9 +209,10 @@ export default {
           have: true,
           popular: 8,
           new: 16,
+					count: 1,
         },
         {
-          id: Date.now(),
+          id: 11,
           title: "Краска Wallquest, Brownsone MS90102",
           price: 5290,
           image: "photoSix.png",
@@ -213,6 +223,7 @@ export default {
           have: true,
           popular: 91,
           new: 13,
+					count: 1,
         },
       ],
       isFiltered: false,
@@ -396,6 +407,11 @@ export default {
 }
 @media (max-width: 1200px) {
 	.pageColors{
+		&__wrapper{
+			flex-direction: column;
+			margin: 0;
+			padding: 0;
+		}
 		&__vSlider{
 			display: none;
 		}
@@ -413,6 +429,12 @@ export default {
 		display: block;
 		margin: 50px 25px;
 	}
+	&__title{
+		display: none;
+	}
+	}
+	.container-mini{
+		padding: 0px 25px;
 	}
 }
 </style>
