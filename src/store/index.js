@@ -39,6 +39,12 @@ export default createStore({
         return null;
       }
     },
+    delItemInArr(state, item) {
+			const index = state.arrCart.findIndex((el) => el.id === item.id);
+      if (index !== -1) {
+        state.arrCart.splice(index, 1);
+      }
+		},
   },
   actions: {},
   // modules: {

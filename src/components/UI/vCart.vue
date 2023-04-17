@@ -58,7 +58,7 @@
                     />
                   </button>
                 </div>
-                <button class="cart__btn-del">
+                <button class="cart__btn-del" @click="delItemInArr(item)">
                   <img
                     src="@/assets/images/icons/xGrey.svg"
                     alt="icon"
@@ -109,6 +109,9 @@ export default {
         return null;
       }
     },
+		delItemInArr(item){
+      this.$store.commit("delItemInArr", item);
+		},
     delAllItem() {
       this.$store.getters.isCarts.length = 0;
     },
