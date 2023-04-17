@@ -1,6 +1,28 @@
 <template>
   <div class="header">
     <div class="container">
+			<div class="header__wrapperMob">
+					<button class="header__toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+					<img
+            src="@/assets/images/icons/logo.svg"
+            alt="logo"
+            class="header__logo"
+          />
+					<button class="header__btn shoper" @click="openShoper">
+              <p class="header__count">
+                {{ this.$store.getters.isCarts.length }}
+              </p>
+              <img
+                src="@/assets/images/icons/shoper.svg"
+                alt="search"
+                class="header__search"
+              />
+          </button>
+			</div>
       <div class="header__wrapper">
         <div class="header__left-block">
           <img
@@ -53,7 +75,7 @@
                 class="header__search"
               />
             </button>
-            <button class="header__btn" @click="openShoper">
+            <button class="header__btn shoper" @click="openShoper">
               <p class="header__count">
                 {{ this.$store.getters.isCarts.length }}
               </p>
@@ -132,6 +154,9 @@ export default {
   &__item {
     margin-right: 25px;
   }
+	&__wrapperMob{
+		display: none;
+	}
   &__link {
     font-weight: 400;
     font-size: 14px;
@@ -171,8 +196,23 @@ export default {
     background: none;
     position: relative;
   }
+	&__toggle {
+	background: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
 }
-
+}
+.header__toggle span {
+	margin-bottom: 5px;
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #333;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
 .header__list:last-child {
   margin-right: 0;
 }
@@ -185,5 +225,21 @@ export default {
   height: 100%;
   background: #000000;
   opacity: 0.7;
+}
+
+@media (max-width: 1200px) {
+.header{
+	&__wrapper{
+		display: none;
+	}
+	&__wrapperMob{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+.shoper{
+	display: block;
+}
 }
 </style>
