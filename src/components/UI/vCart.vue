@@ -15,9 +15,11 @@
           </div>
           <div class="cart__basket-count-clear">
             <h4 class="cart__count">
-              {{ this.$store.getters.isCarts.length }} {{isItem}}
+              {{ this.$store.getters.isCarts.length }} {{ isItem }}
             </h4>
-            <button class="cart__clear" @click="delAllItem">очистить список</button>
+            <button class="cart__clear" @click="delAllItem">
+              очистить список
+            </button>
           </div>
           <div
             class="cart__basket-card"
@@ -70,7 +72,7 @@
         <div class="cart__total">
           <div class="cart__final-total">
             <h3 class="cart__total-title">Итого</h3>
-            <h2 class="cart__total-count">{{sumMonyItem}}₽</h2>
+            <h2 class="cart__total-count">{{ sumMonyItem }}₽</h2>
           </div>
           <button class="cart__buy">Оформить заказ</button>
         </div>
@@ -98,30 +100,34 @@ export default {
     },
     countProductPlus(item) {
       this.$store.commit("findItemTocardPlus", item);
+      this.count++;
     },
-		countProductMinus(item) {
-			if(item.count > 1){
-      	this.$store.commit("findItemTocardMinus", item);
-			}else{
-				return null
-			}
+    countProductMinus(item) {
+      if (item.count > 1) {
+        this.$store.commit("findItemTocardMinus", item);
+      } else {
+        return null;
+      }
     },
-		delAllItem() {
-			this.$store.getters.isCarts.length = 0
-		}
+    delAllItem() {
+      this.$store.getters.isCarts.length = 0;
+    },
   },
   computed: {
     cartItems() {
       return this.$store.getters.isCarts;
     },
-		sumMonyItem() {
-			const count = this.$store.getters.isCarts.reduce((acc, el) => {
-				return acc + el.price
-			}, 0)
-			return count
-		},
-		isItem() {
-      if (this.$store.getters.isCarts.length % 10 === 1 && this.$store.getters.isCarts.length !== 11) {
+    sumMonyItem() {
+      const count = this.$store.getters.isCarts.reduce((acc, el) => {
+        return acc + el.price;
+      }, 0);
+      return count;
+    },
+    isItem() {
+      if (
+        this.$store.getters.isCarts.length % 10 === 1 &&
+        this.$store.getters.isCarts.length !== 11
+      ) {
         return "товар";
       } else if (
         this.$store.getters.isCarts.length % 10 === 2 ||
@@ -155,31 +161,30 @@ export default {
     display: flex;
     flex-direction: column;
   }
-	&__list {
-		display: flex;
-		justify-content: space-between;
-		flex-direction: column;
-		height: 93vh;
-	}
-	&__total{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	&__buy{
-		padding: 20px 58px;
-		font-weight: 500;
-		font-size: 12px;
-		line-height: 15px;
-		text-align: center;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		background: #7BB899;
-		border-radius: 4px;
-		color: #1F2020;
-
-	}
-	&__basket {
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 93vh;
+  }
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__buy {
+    padding: 20px 58px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: #7bb899;
+    border-radius: 4px;
+    color: #1f2020;
+  }
+  &__basket {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -190,20 +195,20 @@ export default {
     justify-content: space-between;
     align-items: center;
   }
-	&__total-title{
-		font-weight: 400;
-		font-size: 16px;
-		line-height: 100%;
-		color: #1F2020;
-	}
-	&__total-count{
-		margin-top: 5px;
-		font-weight: 500;
-		font-size: 30px;
-		line-height: 100%;
-		letter-spacing: -0.02em;
-		color: #1F2020;
-	}
+  &__total-title {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: #1f2020;
+  }
+  &__total-count {
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: #1f2020;
+  }
   &__btw {
     display: flex;
     justify-content: space-between;

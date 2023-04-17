@@ -14,25 +14,33 @@ export default createStore({
       state.arrCart.push(item);
     },
     findItemTocardPlus(state, item) {
-      console.log(item);
-      const arrTrue = state.arrCart?.filter((el) => {
-        if (el.id === item.id) {
-          return (el.count += 1);
+      const foundItem = state.arrCart.find((el) => el.id === item.id);
+      if (foundItem) {
+        if (!foundItem.initialPrice) {
+          foundItem.initialPrice = foundItem.price;
         }
-      });
-      return arrTrue;
+        foundItem.price = foundItem.price + foundItem.initialPrice;
+        foundItem.count = foundItem.count + 1;
+        return foundItem;
+      } else {
+        return null;
+      }
     },
     findItemTocardMinus(state, item) {
-      console.log(item);
-      const arrTrue = state.arrCart?.filter((el) => {
-        if (el.id === item.id) {
-          return (el.count -= 1);
+      const foundItem = state.arrCart.find((el) => el.id === item.id);
+      if (foundItem) {
+        if (!foundItem.initialPrice) {
+          foundItem.initialPrice = foundItem.price;
         }
-      });
-      return arrTrue;
+        foundItem.price = foundItem.price - foundItem.initialPrice;
+        foundItem.count = foundItem.count - 1;
+        return foundItem;
+      } else {
+        return null;
+      }
     },
   },
   actions: {},
   // modules: {
   // }
-}); 
+});
