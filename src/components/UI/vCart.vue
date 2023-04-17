@@ -100,7 +100,11 @@ export default {
       this.$store.commit("findItemTocardPlus", item);
     },
 		countProductMinus(item) {
-      this.$store.commit("findItemTocardMinus", item);
+			if(item.count > 1){
+      	this.$store.commit("findItemTocardMinus", item);
+			}else{
+				return null
+			}
     },
 		delAllItem() {
 			this.$store.getters.isCarts.length = 0
